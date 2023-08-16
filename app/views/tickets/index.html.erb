@@ -1,0 +1,10 @@
+<h1>Ticket List</h1>
+
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <%= link_to "Ticket ##{ticket.id}", ticket_path(ticket) %>
+    </li>
+  <% end %>
+</ul>
+

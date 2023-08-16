@@ -1,0 +1,31 @@
+<h1>Ticket Details</h1>
+
+<p><strong>Request Number:</strong> <%= @ticket.request_number %></p>
+<p><strong>Sequence Number:</strong> <%= @ticket.sequence_number %></p>
+<p><strong>Request Type:</strong> <%= @ticket.request_type %></p>
+<p><strong>Response Due DateTime:</strong> <%= @ticket.response_due_date_time %></p>
+
+<h2>Service Area</h2>
+<p><strong>Primary Service Area Code:</strong> <%= @ticket.service_area&.primary_sacode %></p>
+<p><strong>Additional Service Area Codes:</strong> <%= @ticket.service_area&.additional_sacodes&.join(', ') %></p>
+
+<h2>Excavator</h2>
+<p><strong>Company Name:</strong> <%= @ticket.excavator&.company_name %></p>
+<p><strong>Crew On Site:</strong> <%= @ticket.excavator&.crew_on_site ? 'Yes' : 'No' %></p>
+
+<h2>Digsite Information</h2>
+<p><strong>Well Known Text:</strong></p>
+<div id="map" style="height: 400px; outline: auto;"></div>
+
+<script>
+  var wkt = '<%= @ticket.well_known_text %>';
+  var polygonCoords = wkt.slice(10, -2).split(',').map(function(point) {
+    var latLng = point.trim().split(' ').map(parseFloat);
+    return [latLng[1], latLng[0]];
+  });
+
+  var map = L.map('map').setView([polygonCoords[0][0], polygonCoords[0][1]], 15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  L.polygon(polygonCoords).addTo(map);
+  map.fitBounds(polygonCoords);
+</script>
