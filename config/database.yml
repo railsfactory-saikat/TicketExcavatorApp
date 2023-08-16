@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: TicketExcavatorApp_production
-  username: TicketExcavatorApp
-  password: <%= ENV["TICKETEXCAVATORAPP_DATABASE_PASSWORD"] %>
+  database: TicketExcavatorApp
