@@ -81,4 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: TicketExcavatorApp
+  host: dpg-cjej7see546c73cru9g0-a
+  database: ticket_excavator_app
+  username: saikat
+  password: <%= ENV.fetch("DB_PASSWORD") { 5 } %>
