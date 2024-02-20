@@ -74,6 +74,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "rails-controller-testing"
+  gem "shoulda-matchers"
 end
 
 gem "rails_12factor", group: :production

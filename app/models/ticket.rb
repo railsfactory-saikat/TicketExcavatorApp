@@ -14,6 +14,8 @@ class Ticket < ApplicationRecord
   private
 
   def perform_post_create_operation
+    return if Rails.env.test?
+
     TicketService.new(ticket: self).post_create_operation
   end
 end

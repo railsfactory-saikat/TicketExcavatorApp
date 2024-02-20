@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :ticket do
-    request_number { "09252012-00001" }
+    request_number { Faker::Number.number(digits: 8).to_s }
     sequence_number { "2421" }
     request_type { "Normal" }
     response_due_date_time { DateTime.parse("2011-07-13T23:59:59Z") }
