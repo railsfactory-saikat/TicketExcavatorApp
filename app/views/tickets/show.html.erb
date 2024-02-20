@@ -17,15 +17,4 @@
 <p><strong>Well Known Text:</strong></p>
 <div id="map" style="height: 400px; outline: auto;"></div>
 
-<script>
-  var wkt = '<%= @ticket.well_known_text %>';
-  var polygonCoords = wkt.slice(10, -2).split(',').map(function(point) {
-    var latLng = point.trim().split(' ').map(parseFloat);
-    return [latLng[1], latLng[0]];
-  });
-
-  var map = L.map('map').setView([polygonCoords[0][0], polygonCoords[0][1]], 15);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-  L.polygon(polygonCoords).addTo(map);
-  map.fitBounds(polygonCoords);
-</script>
+<%= hidden_field_tag 'well_known_text', @ticket.well_known_text %>
